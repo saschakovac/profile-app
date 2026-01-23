@@ -10,7 +10,7 @@ const Card = () => {
   return (
     <div className="card">
       <div className="card-body">
-        <img src="src/assets/nmursch.jpg" alt="Profile" className="profile-image" />
+        <img alt="Profile" className="profile-image" src={`${import.meta.env.BASE_URL}assets/nmursch.jpg`}/>
         <h2 className="name">{name}</h2>
         <p className="title">{title}</p>
         <p className="bio">{bio}</p>

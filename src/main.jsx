@@ -6,6 +6,6 @@ import Card from './Card.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Card />
+    <App />
   </StrictMode>,
 )

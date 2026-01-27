@@ -8,7 +8,7 @@ const Introduction = () => {
 
   return (
     <section className="intro">
-      <h2 className="intro__title">Welcome, {name}!</h2>
+      <h2 className="intro__title">Welcome!</h2>
       <p className="intro__text">{bio}</p>
       <p className="intro__email">Contact: nmursch@purdue.brightspace.com</p>
     </section>

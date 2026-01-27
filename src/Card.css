@@ -52,3 +52,20 @@
   color: #4b5563;
   margin: 10px 0 0 0;
 }
+
+.card-body--featured {
+  border-color: #c7d2fe;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+}
+
+.badge {
+  display: inline-block;
+  margin: 6px 0 10px 0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #3730a3;
+}

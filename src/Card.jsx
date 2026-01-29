@@ -1,7 +1,7 @@
 import React from "react";
 import "./Card.css";
 
-const Card = ({ name, year, major, email, imageSrc, isFeatured }) => {
+const Card = ({ name, title, year, major, email, imageSrc, isFeatured }) => {
   const cardClass = isFeatured ? "card-body card-body--featured" : "card-body";
 
   return (
@@ -12,6 +12,7 @@ const Card = ({ name, year, major, email, imageSrc, isFeatured }) => {
         {isFeatured && <span className="badge">Featured</span>}
 
         <h2 className="name">{name}</h2>
+        <p className="role">{title}</p>
         <p className="title">
           {year} • {major}
         </p>

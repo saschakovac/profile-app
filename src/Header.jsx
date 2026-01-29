@@ -3,7 +3,7 @@ import "./Header.css";
 
 const Header = () => {
   const appName = "Profile App";
-  const tagline = "Lab 4 Assignment - JSX Components with Props";
+  const tagline = "Lab 5 Assignment - Interactivity";
 
   return (
     <header className="header">

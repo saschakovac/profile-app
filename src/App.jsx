@@ -6,11 +6,24 @@ import Section from "./Section.jsx";
 import "./App.css";
 
 export default function App() {
+  const [mode, setMode] = useState("light");
+  const [selectedTitle, setSelectedTitle] = useState("All");
+  const [searchText, setSearchText] = useState("");
+
+  function toggleMode() {
+    setMode((m) => (m === "light" ? "dark" : "light"));
+  }
+
+  function handleReset() {
+    setSelectedTitle("All");
+    setSearchText("");
+  }
+
   const cards = [
     {
       id: 1,
       name: "Nathan Eric Mursch",
-      title: "Student",
+      title: "Web Developer",
       year: "Junior",
       major: "Web Development & Design + German",
       email: "nmursch@purdue.brightspace.com",
@@ -22,15 +35,12 @@ export default function App() {
       name: "Grant Aaron Mursch",
       title: "Student",
       year: "Freshman",
-      major: "Student @ Purdue University",
+      major: "Purdue University",
       email: "gmursch@purdue.brightspace.com",
       imageSrc: `${import.meta.env.BASE_URL}assets/gmursch.png`,
       isFeatured: false,
     },
   ];
-
-  const [selectedTitle, setSelectedTitle] = useState("All");
-  const [searchText, setSearchText] = useState("");
 
   const titleOptions = useMemo(() => {
     const unique = Array.from(new Set(cards.map((c) => c.title))).sort();
@@ -39,7 +49,6 @@ export default function App() {
 
   const filteredCards = useMemo(() => {
     const q = searchText.trim().toLowerCase();
-
     return cards.filter((c) => {
       const matchesTitle = selectedTitle === "All" || c.title === selectedTitle;
       const matchesSearch = q === "" || c.name.toLowerCase().includes(q);
@@ -47,18 +56,17 @@ export default function App() {
     });
   }, [cards, selectedTitle, searchText]);
 
-  function handleReset() {
-    setSelectedTitle("All");
-    setSearchText("");
-  }
-
   return (
-    <div className="app">
-      <Header />
+    <div className={`app ${mode === "dark" ? "app--dark" : "app--light"}`}>
+      <Header mode={mode} onToggleMode={toggleMode} />
       <main className="main">
+        <p className="modeBanner">
+          {mode === "dark" ? "Dark mode is on 🌙" : "Light mode is on ☀️"}
+        </p>
+
         <Introduction />
 
-        <Section title="Profiles">
+        <Section title="Profiles" mode={mode}>
           <div className="controls">
             <label className="control">
               <span className="control__label">Filter by title</span>
@@ -80,7 +88,6 @@ export default function App() {
               <input
                 className="control__input"
                 type="text"
-                placeholder="Type a name..."
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
               />
@@ -97,16 +104,7 @@ export default function App() {
 
           <div className="cards">
             {filteredCards.map((card) => (
-              <Card
-                key={card.id}
-                name={card.name}
-                title={card.title}
-                year={card.year}
-                major={card.major}
-                email={card.email}
-                imageSrc={card.imageSrc}
-                isFeatured={card.isFeatured}
-              />
+              <Card key={card.id} {...card} />
             ))}
           </div>
         </Section>

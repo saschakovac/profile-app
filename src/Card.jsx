@@ -1,26 +1,27 @@
 import React from "react";
 import "./Card.css";
 
-const Card = ({ name, title, year, major, email, imageSrc, isFeatured }) => {
-  const cardClass = isFeatured ? "card-body card-body--featured" : "card-body";
-
+export default function Card({
+  name,
+  title,
+  year,
+  major,
+  email,
+  imageSrc,
+  isFeatured,
+}) {
   return (
     <div className="card">
-      <div className={cardClass}>
-        <img alt={`${name} profile`} className="profile-image" src={imageSrc} />
-
+      <div className={`card-body ${isFeatured ? "card-body--featured" : ""}`}>
+        <img className="profile-image" src={imageSrc} alt={name} />
         {isFeatured && <span className="badge">Featured</span>}
-
         <h2 className="name">{name}</h2>
         <p className="role">{title}</p>
         <p className="title">
           {year} • {major}
         </p>
-
         <p className="contact">{email}</p>
       </div>
     </div>
   );
-};
-
-export default Card;
+}

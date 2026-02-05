@@ -79,3 +79,13 @@
 .app--dark .card-body--featured {
   border-color: rgba(99, 102, 241, 0.6);
 }
+
+.bio {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 10px 0 10px;
+}
+
+.app--dark .bio {
+  color: rgba(255, 255, 255, 0.75);
+}

@@ -7,6 +7,7 @@ export default function Card({
   year,
   major,
   email,
+  bio,
   imageSrc,
   isFeatured,
 }) {
@@ -20,6 +21,7 @@ export default function Card({
         <p className="title">
           {year} • {major}
         </p>
+        {bio && <p className="bio">{bio}</p>}
         <p className="contact">{email}</p>
       </div>
     </div>

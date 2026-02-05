@@ -11,7 +11,7 @@ export default function Header({ mode, onToggleMode }) {
           Profile App
         </h1>
         <p className={`${styles.tagline} ${isDark ? styles.taglineDark : ""}`}>
-          Lab 6 - Conditional Rendering and Styling
+          Lab 7 - Add Profile Form
         </p>
       </div>
       <button className={styles.toggle} type="button" onClick={onToggleMode}>

@@ -3,6 +3,7 @@ import Header from "./Header.jsx";
 import Introduction from "./Introduction.jsx";
 import Card from "./Card.jsx";
 import Section from "./Section.jsx";
+import AddProfileForm from "./AddProfileForm.jsx";
 import "./App.css";
 
 export default function App() {
@@ -10,16 +11,7 @@ export default function App() {
   const [selectedTitle, setSelectedTitle] = useState("All");
   const [searchText, setSearchText] = useState("");
 
-  function toggleMode() {
-    setMode((m) => (m === "light" ? "dark" : "light"));
-  }
-
-  function handleReset() {
-    setSelectedTitle("All");
-    setSearchText("");
-  }
-
-  const cards = [
+  const [cards, setCards] = useState([
     {
       id: 1,
       name: "Nathan Eric Mursch",
@@ -27,6 +19,7 @@ export default function App() {
       year: "Junior",
       major: "Web Development & Design + German",
       email: "nmursch@purdue.brightspace.com",
+      bio: "Building React apps with reusable components and clean UI.",
       imageSrc: `${import.meta.env.BASE_URL}assets/nmursch.jpg`,
       isFeatured: true,
     },
@@ -37,10 +30,32 @@ export default function App() {
       year: "Freshman",
       major: "Purdue University",
       email: "gmursch@purdue.brightspace.com",
+      bio: "Interested in technology, learning, and improving every day.",
       imageSrc: `${import.meta.env.BASE_URL}assets/gmursch.png`,
       isFeatured: false,
     },
-  ];
+  ]);
+
+  function toggleMode() {
+    setMode((m) => (m === "light" ? "dark" : "light"));
+  }
+
+  function handleReset() {
+    setSelectedTitle("All");
+    setSearchText("");
+  }
+
+  function handleAddProfile(profile) {
+    setCards((prev) => [
+      ...prev,
+      {
+        id: Date.now(),
+        year: "N/A",
+        major: "N/A",
+        ...profile,
+      },
+    ]);
+  }
 
   const titleOptions = useMemo(() => {
     const unique = Array.from(new Set(cards.map((c) => c.title))).sort();
@@ -59,12 +74,17 @@ export default function App() {
   return (
     <div className={`app ${mode === "dark" ? "app--dark" : "app--light"}`}>
       <Header mode={mode} onToggleMode={toggleMode} />
+
       <main className="main">
         <p className="modeBanner">
           {mode === "dark" ? "Dark mode is on 🌙" : "Light mode is on ☀️"}
         </p>
 
         <Introduction />
+
+        <Section title="Add Profile" mode={mode}>
+          <AddProfileForm mode={mode} onAddProfile={handleAddProfile} />
+        </Section>
 
         <Section title="Profiles" mode={mode}>
           <div className="controls">
